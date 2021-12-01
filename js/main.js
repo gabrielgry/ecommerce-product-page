@@ -6,10 +6,12 @@
 
   function handleCloseMenu() {
     menu.dataset.open = "false";
+    document.body.classList.remove("body--disable-scroll");
   }
 
   function handleOpenMenu() {
     menu.dataset.open = "true";
+    document.body.classList.add("body--disable-scroll");
   }
 
   const openBtn = document.getElementById("menu-open-btn");
@@ -131,9 +133,12 @@ function Carousel(root, currentImageIndex) {
  * Cart
  */
 const Cart = (function () {
+  let isCartVisible = false;
+
   const cartContainer = document.getElementsByClassName(
     "nav__cart-container"
   )[0];
+  const cartBtn = document.getElementsByClassName("nav__cart-btn")[0];
   const cartPopup = document.getElementsByClassName("cart__popup")[0];
   const cart = document.getElementsByClassName("cart__card")[0];
   const list = document.getElementById("cart-list");
@@ -177,11 +182,13 @@ const Cart = (function () {
   }
 
   function handleCartVisibility(action) {
-    if (action == "show") {
+    if (action === "show") {
+      isCartVisible = true;
       cartPopup.classList.add("cart__popup--show");
     }
 
-    if (action == "hide") {
+    if (action === "hide") {
+      isCartVisible = false;
       cartPopup.classList.remove("cart__popup--show");
     }
   }
@@ -192,6 +199,13 @@ const Cart = (function () {
   cartContainer.addEventListener("mouseout", () =>
     handleCartVisibility("hide")
   );
+  cartContainer.addEventListener("click", () => {
+    if (isCartVisible) {
+      handleCartVisibility("hide");
+    } else {
+      handleCartVisibility("show");
+    }
+  });
 
   return {
     add: function (product) {
@@ -207,6 +221,9 @@ const Cart = (function () {
 
       products.push(product);
       addItemToDocument(product);
+    },
+    show: function () {
+      handleCartVisibility("show");
     },
   };
 })();
@@ -224,6 +241,8 @@ const Cart = (function () {
     };
 
     Cart.add(product);
+    Cart.show();
+    window.scrollTo(0, 0);
   }
 })();
 

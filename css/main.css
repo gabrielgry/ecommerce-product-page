@@ -44,6 +44,10 @@ body {
   background-color: var(--clr-light);
 }
 
+.body--disable-scroll {
+  overflow: hidden;
+}
+
 /* Typography
   ========================================================================== */
 h1,
