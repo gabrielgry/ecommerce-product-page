@@ -1,44 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+
+  <link rel='stylesheet' href='css/main.css'>
   <title>Frontend Mentor | E-commerce product page</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
 </head>
+
 <body>
+  <header class="header section">
+    <div class="container">
+      <nav class="nav">
+        <div id='menu-open-btn' class="nav__menu-btn icon-btn"><object data='images/icon-menu.svg'></object></div>
+        <a class='nav__logo-link' href=''>
+          <img src='images/logo.svg' alt='Logo: Sneakers'>
+        </a>
+        <ul class='nav__list'>
+          <li class='nav__item'>
+            <a href='' class='nav__link'>Collections</a>
+            <div class='nav__item-highlight'></div>
+          </li>
+          <li class='nav__item'>
+            <a href='' class='nav__link'>Men</a>
+            <div class='nav__item-highlight'></div>
+          </li>
+          <li class='nav__item'>
+            <a href='' class='nav__link'>Women</a>
+            <div class='nav__item-highlight'></div>
+          </li>
+          <li class='nav__item'>
+            <a href='' class='nav__link'>About</a>
+            <div class='nav__item-highlight'></div>
+          </li>
+          <li class='nav__item'>
+            <a href='' class='nav__link'>Contact</a>
+            <div class='nav__item-highlight'></div>
+          </li>
+        </ul>
 
-  Collections
-  Men
-  Women
-  About
-  Contact
 
-  Sneaker Company
+        <div class='nav__cart-container'>
+          <div class='nav__cart-btn icon-btn'><object data='images/icon-cart.svg'></object></div>
+          <div class='cart__popup'>
+            <div data-is-empty='true' class='cart__card'>
+              <div class='cart__topbar'>
+                <h3 class='cart__title'>Cart</h3>
+                <div class='cart__separator'></div>
+              </div>
 
-  Fall Limited Edition Sneakers
+              <div class='cart__empty'>
+                <p class='cart__empty-text'>Your cart is empty</p>
+              </div>
 
-  These low-profile sneakers are your perfect casual wear companion. Featuring a 
-  durable rubber outer sole, they’ll withstand everything the weather can offer.
+              <div class='cart__content'>
+                <ul id='cart-list' class='cart__list'>
 
-  $125.00
-  50%
-  $250.00
+                  <template id='cart-item-template'>
+                    <li class='cart__item'>
+                      <img class='cart__item-image' src='images/image-product-1-thumbnail.jpg' alt='product thumb'>
+                      <div class='cart__item-detail'>
+                        <p class='cart__item-name'></p>
+                        <p class='cart__item-price'></p>
+                        <p class='cart__item-total'></p>
+                      </div>
+                      <div class='cart__item-delete-btn icon-btn'>
+                        <object data='images/icon-delete.svg'></object>
+                      </div>
+                    </li>
+                  </template>
 
-  0
-  Add to cart
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+                </ul>
+                <button class='btn cart__button'>Checkout</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class='nav__avatar'>
+          <img src='/images/image-avatar.png' height="50" width="50" class='nav__avatar-image' alt='Profile image'>
+        </div>
+      </nav>
+      <div class='separator'></div>
+    </div>
+  </header>
+
+
+  <div id='menu' data-open="false" class='menu'>
+    <div id='menu-backdrop' class='menu-backdrop backdrop'></div>
+    <nav class='mobile-nav'>
+      <div id='menu-close-btn' class='mobile-nav__close-btn icon-btn'>
+        <object data='images/icon-close.svg'></object>
+      </div>
+      <ul class='mobile-nav__list'>
+        <li class='mobile-nav__item'><a href='' class='mobile-nav__link'>Collections</a></li>
+        <li class='mobile-nav__item'><a href='' class='mobile-nav__link'>Men</a></li>
+        <li class='mobile-nav__item'><a href='' class='mobile-nav__link'>Women</a></li>
+        <li class='mobile-nav__item'><a href='' class='mobile-nav__link'>About</a></li>
+        <li class='mobile-nav__item'><a href='' class='mobile-nav__link'>Contact</a></li>
+      </ul>
+    </nav>
   </div>
+
+  <div id='lightbox' class='lightbox'>
+    <div class='lightbox-backdrop backdrop'></div>
+    <div class='lightbox__carousel-container'>
+      <div class='lightbox-carousel'>
+        <div class='lightbox-topbar'>
+          <div class='icon-btn lightbox__close-btn'>
+            <object data='images/icon-close-lightbox.svg'></object>
+          </div>
+        </div>
+        <div class='carousel__image-container'>
+          <img class='lightbox-carousel__image carousel__image carousel__image--show' src='images/image-product-1.jpg'
+            alt='Product image'>
+          <img class='lightbox-carousel__image carousel__image' src='images/image-product-2.jpg' alt='Product image'>
+          <img class='lightbox-carousel__image carousel__image' src='images/image-product-3.jpg' alt='Product image'>
+          <img class='lightbox-carousel__image carousel__image' src='images/image-product-4.jpg' alt='Product image'>
+          <div class='lightbox-carousel__previous-btn carousel__previous-btn carousel__btn--hidden'>
+            <object data='images/icon-previous.svg'></object>
+          </div>
+          <div class='lightbox-carousel__next-btn carousel__next-btn'>
+            <object data='images/icon-next.svg'></object>
+          </div>
+        </div>
+        <ul class='lightbox-carousel__preview-list carousel__preview-list'>
+          <li class='carousel__preview-item'>
+            <img class='carousel__preview-image' src='images/image-product-1-thumbnail.jpg' alt='Preview image'>
+            <div class='carousel__preview-overlay carousel__preview-overlay--active'></div>
+          </li>
+          <li class='carousel__preview-item'>
+            <img class='carousel__preview-image' src='images/image-product-2-thumbnail.jpg' alt='Preview image'>
+            <div class='carousel__preview-overlay'></div>
+          </li>
+          <li class='carousel__preview-item'>
+            <img class='carousel__preview-image' src='images/image-product-3-thumbnail.jpg' alt='Preview image'>
+            <div class='carousel__preview-overlay'></div>
+          </li>
+          <li class='carousel__preview-item'>
+            <img class='carousel__preview-image' src='images/image-product-4-thumbnail.jpg' alt='Preview image'>
+            <div class='carousel__preview-overlay'></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <main class='main'>
+    <div class='carousel-container'>
+      <div id='page-carousel' class='carousel'>
+        <div id='carousel__image-container' class='carousel__image-container'>
+          <img class='carousel__image carousel__image--show' src='images/image-product-1.jpg' alt='Product image'>
+          <img class='carousel__image' src='images/image-product-2.jpg' alt='Product image'>
+          <img class='carousel__image' src='images/image-product-3.jpg' alt='Product image'>
+          <img class='carousel__image' src='images/image-product-4.jpg' alt='Product image'>
+          <div class='carousel__previous-btn carousel__btn--hidden'>
+            <object data='images/icon-previous.svg'></object>
+          </div>
+          <div class='carousel__next-btn'>
+            <object data='images/icon-next.svg'></object>
+          </div>
+        </div>
+        <ul class='carousel__preview-list'>
+          <li class='carousel__preview-item'>
+            <img class='carousel__preview-image' src='images/image-product-1-thumbnail.jpg' alt='Preview image'>
+            <div class='carousel__preview-overlay carousel__preview-overlay--active'></div>
+          </li>
+          <li class='carousel__preview-item'>
+            <img class='carousel__preview-image' src='images/image-product-2-thumbnail.jpg' alt='Preview image'>
+            <div class='carousel__preview-overlay'></div>
+          </li>
+          <li class='carousel__preview-item'>
+            <img class='carousel__preview-image' src='images/image-product-3-thumbnail.jpg' alt='Preview image'>
+            <div class='carousel__preview-overlay'></div>
+          </li>
+          <li class='carousel__preview-item'>
+            <img class='carousel__preview-image' src='images/image-product-4-thumbnail.jpg' alt='Preview image'>
+            <div class='carousel__preview-overlay'></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class='info'>
+      <h6 class='info__subtitle'>Sneaker Company</h6>
+      <h1 id='product-name' class='info__name'>Fall Limited Edition Sneakers</h1>
+      <p class='info__description'>
+        These low-profile sneakers are your perfect casual wear companion. Featuring a
+        durable rubber outer sole, they’ll withstand everything the weather can offer.
+      </p>
+
+      <div class='info__price-container'>
+        <span id='product-price' class='info__price'>$125.00</span>
+        <span class='info__discount'>50%</span>
+        <span class='info__discount-price'>$250.00</span>
+      </div>
+
+      <div class='info__actions-container'>
+        <div class='amount'>
+          <div id='amount__minus-btn' class='amount__minus-btn'><object data='images/icon-minus.svg'></object></div>
+          <span id='amount__value' class='amount__value'>1</span>
+          <div id='amount__plus-btn' class='amount__plus-btn'><object data='images/icon-plus.svg'></object></div>
+        </div>
+
+        <button id='add-to-cart' class='btn info__cart-btn'>
+          <span class='info__cart-btn-icon'>
+            <object data='images/icon-cart-light.svg'></object>
+          </span>
+          Add to cart
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <script src='js/main.js'></script>
 </body>
+
 </html>
